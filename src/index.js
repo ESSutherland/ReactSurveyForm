@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Form extends React.Component{                                              //create a new component called Form
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = {                                                               //set the state
       options:[                                                                  //create an array for the options
         {id: 0, choice: "---Select Time---", show: true, currentSelect: ""},     //create the first element of the array
