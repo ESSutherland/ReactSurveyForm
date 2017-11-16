@@ -16,24 +16,24 @@ class Form extends React.Component{                                             
   }
 
 
-  handleChange(e){                                                               //function to handle changes to the select
-    var val = e.target.value;                                                    //set the variable val to the targeted element's value
+  handleChange(element){                                                               //function to handle changes to the select
+    var val = element.target.value;                                                    //set the variable val to the targeted element's value
       if(val > 0){                                                               //check if the value is greater than 0
         var updateChoices = this.state.options.slice();                          //copy the array from state to a local variable
         for(var i = 0; i < updateChoices.length; i++){                           //loop for the length of the array
-          if(updateChoices[i].currentSelect == e.target.id){                     //check if the currentSelect of any element in the array is equal to the targeted element's id
+          if(updateChoices[i].currentSelect == element.target.id){                     //check if the currentSelect of any element in the array is equal to the targeted element's id
             updateChoices[i].show = true;                                        //set the show of the selected element in the array to true
             updateChoices[i].currentSelect = "";                                 //set the currentSelect of the selected element to blank
           }
         }
         updateChoices[val].show = false;                                         //set the show of the selected element in the array to false
-        updateChoices[val].currentSelect = e.target.id;                          //set the currentSelect of the selected element in the array to the targeted element's id
+        updateChoices[val].currentSelect = element.target.id;                          //set the currentSelect of the selected element in the array to the targeted element's id
         this.setState({options: updateChoices})                                  //set the state to the updated array
       }
       else{                                                                      //else (if the value is not greater than 0)
         var updateChoices = this.state.options.slice();                          //copy the array from state to a local variable
         for(var i = 0; i < updateChoices.length; i++){                           //loop for the length of the array
-          if(updateChoices[i].currentSelect == e.target.id){                     //check if the currentSelect of any element in the array is equal to the targeted element's id
+          if(updateChoices[i].currentSelect == element.target.id){                     //check if the currentSelect of any element in the array is equal to the targeted element's id
             updateChoices[i].show = true;                                        //set the show of the selected element in the array to true
             updateChoices[i].currentSelect = "";                                 //set the currentSelect of the selected element to blank
           }
@@ -65,7 +65,7 @@ class Form extends React.Component{                                             
   }
   );
     return(
-      <select id={elementId} onChange={(e) => this.handleChange(e)}>             //create a select element with an id and onClick
+      <select id={elementId} onChange={this.handleChange.bind(this)}>             //create a select element with an id and onClick
       {listChoices}                                                              //output the variable with the map of the array
       </select>
     );
